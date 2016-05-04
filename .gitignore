@@ -1,3 +1,10 @@
+# Others
+temp/*
+CMakeFiles/*
+Makefile
+CMakeCache.txt
+cmake_install.cmake
+
 # Compiled Object files
 *.slo
 *.lo
@@ -26,3 +33,4 @@
 *.exe
 *.out
 *.app
+
