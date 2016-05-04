@@ -6,10 +6,10 @@
 /*
  * The Fifo structure
  */
-struct fifo_element{
-	uint8_t *value; /* The value as retrieved by the listener */
-	int size; /* The size of the value array */
-	struct fifo_element *next; /* A pointer to the next structure or null if the end */
+struct fifo_element {
+    uint8_t *value; /* The value as retrieved by the listener */
+    int size; /* The size of the value array */
+    struct fifo_element *next; /* A pointer to the next structure or null if the end */
 };
 
 /*
@@ -33,6 +33,6 @@ void add_last(uint8_t *buffer, int size, struct fifo_element *first);
  * @fifo[inout] : the pointer on the first element(pointer). Will be modified
  * @return ERROR_EMPTY if empty
  */
- int get_first(uint8_t *buffer, int *size, struct fifo_element **fifo);
+int get_first(uint8_t *buffer, int *size, struct fifo_element **fifo);
 
 #endif

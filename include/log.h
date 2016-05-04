@@ -3,12 +3,12 @@
 
 #include "../include/error.h"
 
-typedef enum{
-	none = 0,
-	error = 1,
-	info = 2,
-	debug = 3
-}log_level;
+typedef enum {
+    none = 0,
+    error = 1,
+    info = 2,
+    debug = 3
+} log_level;
 
 void set_log_level(log_level level);
 
