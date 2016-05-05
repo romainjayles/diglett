@@ -8,6 +8,8 @@
 #include <stdint.h>
 
 
+#include <linux/ip.h>
+
 #include <arpa/inet.h>
 #include <net/if.h>
 #include <pthread.h>
@@ -91,18 +93,32 @@ int close_listener(struct listener_handle_st *handle) {
 int _treat_raw_packet(struct packet_st packet) {
 }
 
+void print_header() {
+}
+
 void* collector_loop(void* arg) {
     struct packet_st packet;
     int fd = *((int*)(arg));
     int receive_sz, i;
     uint8_t receive_buffer[MAX_RCVFROM_BUFFER];
+    struct ether_header *eh = (struct ether_header *) receive_buffer;
+    struct iphdr *iph = (struct iphdr *) (receive_buffer + sizeof(struct ether_header));
 
     while(1) {
         receive_sz = recvfrom(fd, receive_buffer, MAX_RCVFROM_BUFFER, 0, NULL, NULL);
-        printf("listener: got packet %i bytes\n", receive_sz);
-        for(i=0; i < receive_sz; i++) {
-            printf("%02x:", receive_buffer[i]);
+
+        /*printf("listener: got packet %i bytes\n", receive_sz);
+        printf("Tos : %u\n", iph->tos);
+        printf("Tot_len : %u\n", iph->tot_len);
+        printf("id : %u\n", iph->id);
+        printf("protocol : %u\n", iph->protocol);*/
+        if(iph->protocol != 17 && iph->protocol != 6) {
+            printf("protocol : %u\n", iph->protocol);
+            printf("\n");
         }
+        /*for(i=0; i < receive_sz; i++) {
+            printf("%02x:", receive_buffer[i]);
+        }*/
     }
 
 }
