@@ -44,7 +44,9 @@ int init(const char *interface_name, struct listener_handle_st *handle) {
     print_log(info, "Socket oppened\n");
 
     /* Reuse*/
-    if (setsockopt(fd, SOL_SOCKET, SO_REUSEADDR, &sockopt, sizeof sockopt) == -1) {
+    error_code = setsockopt(fd, SOL_SOCKET, SO_REUSEADDR, &sockopt, sizeof sockopt);
+    if(error_code != 0){
+		//TODO
         return ERROR_UNDEFINED;
     }
 
@@ -62,7 +64,6 @@ int init(const char *interface_name, struct listener_handle_st *handle) {
     print_log(info, "Launching the collector loop\n");
     //TODO : check if pthread attribute should be null ?
     //Launching the listener loop
-    printf("FD : %i\n", fd);
     error_code = pthread_create(&handle->listener_thread, NULL, collector_loop, (void*) &(handle->sock_fd));
     //collector_loop(&fd);
 
