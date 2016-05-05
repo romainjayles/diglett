@@ -12,6 +12,18 @@ struct fifo_element {
     //int size; /* The size of the value array */
 };
 
+/* 
+ * The fifo structure.
+ * Pointer on last is here to keep track of the last element and fasten the insertion in last position
+ */
+struct fifo_st{
+	struct fifo_element *first;
+	struct fifo_element *last;
+};
+
+void print_fifo(struct fifo_st *fifo);
+
+
 /*
  * Allow to init the fifo
  * @return : a pointer on the first element
@@ -24,7 +36,7 @@ struct fifo_element init_fifo();
  * @size[in] : the total size of datas contained in the buffer
  * @first[in] : the first element of the fifo
  */
-void add_last(char *buffer, struct fifo_element *first);
+void add_last(char *buffer, struct fifo_st *fifo);
 
 /*
  * Get first : Allow to retrieve the first element in the fifo and suppress it from the fifo
@@ -33,6 +45,8 @@ void add_last(char *buffer, struct fifo_element *first);
  * @fifo[inout] : the pointer on the first element(pointer). Will be modified
  * @return ERROR_EMPTY if empty
  */
-int get_first(char *buffer, struct fifo_element **fifo);
+int get_first(struct fifo_element *dest, struct fifo_st *fifo);
+
+void free_fifo(struct fifo_st *fifo);
 
 #endif
