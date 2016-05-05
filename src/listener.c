@@ -20,7 +20,7 @@
 //divide in init_socket and init_thread ?
 
 
-int init(const char *interface_name, struct listener_handle_st *handle) {
+int init_listener(const char *interface_name, struct listener_handle_st *handle) {
 
     struct ifreq ifr;
     int error_code, fd, sockopt;

@@ -24,7 +24,7 @@ struct packet_st{
 
 
 /* Initialise the listener */
-int init(const char *interface_name, struct listener_handle_st *handle);
+int init_listener(const char *interface_name, struct listener_handle_st *handle);
 
 /* Collect the datas */
 void* collector_loop(void* arg);

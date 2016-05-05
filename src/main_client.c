@@ -19,7 +19,16 @@ int main(int argc, char **argv) {
     set_log_level(debug);
     /*test_fifo();
     return 0;*/
-    error_code = init("wlan0", &listener_handle);
+    
+    /* Initialisation of the listener thread */
+    error_code = init_listener("wlan0", &listener_handle);
+    if(error_code != ERROR_OK) {
+        print_log_error(error, "Init of listener returned", error_code);
+        return -1;
+    }
+    
+    /* Initialisation of the listener thread */
+    error_code = init_packet_manager(&pm_handle);
     if(error_code != ERROR_OK) {
         print_log_error(error, "Init returned", error_code);
         return -1;
