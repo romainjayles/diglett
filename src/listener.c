@@ -79,7 +79,14 @@ int init(const char *interface_name, struct listener_handle_st *handle) {
 int close(struct listener_handle_st *handle) {
 }
 
+/*
+ * Allow to treat a packed as received by the socket
+ */
+int _treat_raw_packet(struct packet_st packet){
+}
+
 void* collector_loop(void* arg) {
+	struct packet_st packet;
     int fd = *((int*)(arg));
     int receive_sz, i;
     uint8_t receive_buffer[MAX_RCVFROM_BUFFER];
