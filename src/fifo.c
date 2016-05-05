@@ -4,10 +4,10 @@
 struct fifo_element init_fifo() {
 }
 
-void add_last(uint8_t *buffer, int size, struct fifo_element *first) {
+void add_last(char *buffer, struct fifo_element *first) {
 }
 
-int get_first(uint8_t *buffer, int *size, struct fifo_element **fifo) {
+int get_first(char *buffer, struct fifo_element **fifo) {
     return ERROR_EMPTY;
 }
 

@@ -10,6 +10,11 @@
 
 void print_help();
 
+void test_fifo(){
+	struct fifo_element *fifo;
+	add_last("hey", &fifo);
+}
+
 int main(int argc, char **argv) {
     int error_code;
     struct listener_handle_st listener_handle;
@@ -19,6 +24,7 @@ int main(int argc, char **argv) {
         print_log_error(error, "Init returned", error_code);
         return -1;
     }
+    test_fifo();
     pthread_join(listener_handle.listener_thread ,NULL);
     return 0;
 }
