@@ -87,6 +87,7 @@ int close_listener(struct listener_handle_st *handle) {
 /*
  * Allow to treat a packed as received by the socket
  */
+ //TODO : should be done by packet_manager ?
 int _treat_raw_packet(struct packet_st packet){
 }
 
@@ -105,6 +106,3 @@ void* collector_loop(void* arg) {
     }
 
 }
-
-
-
