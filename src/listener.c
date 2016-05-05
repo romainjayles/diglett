@@ -45,8 +45,8 @@ int init_listener(const char *interface_name, struct listener_handle_st *handle)
 
     /* Reuse*/
     error_code = setsockopt(fd, SOL_SOCKET, SO_REUSEADDR, &sockopt, sizeof sockopt);
-    if(error_code != 0){
-		//TODO
+    if(error_code != 0) {
+        //TODO
         return ERROR_UNDEFINED;
     }
 
@@ -78,21 +78,21 @@ int init_listener(const char *interface_name, struct listener_handle_st *handle)
 }
 
 int close_listener(struct listener_handle_st *handle) {
-	pthread_join(handle->listener_thread ,NULL);
-	if(close(handle->sock_fd) != 0){
-		return ERROR_IMPOSSIBLE_TO_CLOSE_SOCKET;
-	}
+    pthread_join(handle->listener_thread ,NULL);
+    if(close(handle->sock_fd) != 0) {
+        return ERROR_IMPOSSIBLE_TO_CLOSE_SOCKET;
+    }
 }
 
 /*
  * Allow to treat a packed as received by the socket
  */
- //TODO : should be done by packet_manager ?
-int _treat_raw_packet(struct packet_st packet){
+//TODO : should be done by packet_manager ?
+int _treat_raw_packet(struct packet_st packet) {
 }
 
 void* collector_loop(void* arg) {
-	struct packet_st packet;
+    struct packet_st packet;
     int fd = *((int*)(arg));
     int receive_sz, i;
     uint8_t receive_buffer[MAX_RCVFROM_BUFFER];

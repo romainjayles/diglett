@@ -7,18 +7,18 @@
  * The Fifo structure
  */
 struct fifo_element {
-	struct fifo_element *next; /* A pointer to the next structure or null if the end */
+    struct fifo_element *next; /* A pointer to the next structure or null if the end */
     char *string; /* The value as retrieved by the listener */
     //int size; /* The size of the value array */
 };
 
-/* 
+/*
  * The fifo structure.
  * Pointer on last is here to keep track of the last element and fasten the insertion in last position
  */
-struct fifo_st{
-	struct fifo_element *first;
-	struct fifo_element *last;
+struct fifo_st {
+    struct fifo_element *first;
+    struct fifo_element *last;
 };
 
 void print_fifo(struct fifo_st *fifo);

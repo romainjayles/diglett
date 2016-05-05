@@ -41,40 +41,40 @@ void add_last(char *buffer, struct fifo_st *fifo) {
 }
 
 int get_first(struct fifo_element *dest, struct fifo_st *fifo) {
-	struct fifo_element *old_fist;
-	//If the fifo is empty
-	if(fifo->first == NULL){
-		return ERROR_EMPTY;
-	//If not
-	}else{
-		// We copy the content of the first element to the destination
-		//TODO : have to be remove in further vesions.
-		free(dest->string);
-		memcpy(dest, fifo->first, sizeof(*dest));
-		old_fist = fifo->first;
-		// If this was the last element
-		if(fifo->first->next == NULL){
-			fifo->first = NULL;
-			fifo->last = NULL;
-		}else{
-			fifo->first = fifo->first->next;
-		}
-		free(old_fist);
-	}
-	return ERROR_OK;
-    
+    struct fifo_element *old_fist;
+    //If the fifo is empty
+    if(fifo->first == NULL) {
+        return ERROR_EMPTY;
+        //If not
+    } else {
+        // We copy the content of the first element to the destination
+        //TODO : have to be remove in further vesions.
+        free(dest->string);
+        memcpy(dest, fifo->first, sizeof(*dest));
+        old_fist = fifo->first;
+        // If this was the last element
+        if(fifo->first->next == NULL) {
+            fifo->first = NULL;
+            fifo->last = NULL;
+        } else {
+            fifo->first = fifo->first->next;
+        }
+        free(old_fist);
+    }
+    return ERROR_OK;
+
 }
 
 
-void free_fifo(struct fifo_st *fifo){
-	struct fifo_element *current = fifo->first;
-	struct fifo_element *old_current;
+void free_fifo(struct fifo_st *fifo) {
+    struct fifo_element *current = fifo->first;
+    struct fifo_element *old_current;
     while(current != NULL) {
         free(current->string);
         old_current = current;
         current = current->next;
         free(old_current);
-        
+
     }
 }
 
