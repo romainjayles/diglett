@@ -5,6 +5,7 @@
 
 
 #include "../include/listener.h"
+#include "../include/packet_manager.h"
 #include "../include/fifo.h"
 #include "../include/common.h"
 
@@ -13,9 +14,12 @@ void print_help();
 //TODO : move test to test folder
 void test_fifo();
 
+
+//TODO : add macro for error checking ?
 int main(int argc, char **argv) {
     int error_code;
     struct listener_handle_st listener_handle;
+    struct packet_manager_st pm_handle;
     set_log_level(debug);
     /*test_fifo();
     return 0;*/
@@ -30,10 +34,12 @@ int main(int argc, char **argv) {
     /* Initialisation of the listener thread */
     error_code = init_packet_manager(&pm_handle);
     if(error_code != ERROR_OK) {
-        print_log_error(error, "Init returned", error_code);
+        print_log_error(error, "Init of packet_manager returned", error_code);
         return -1;
     }
+    
     close_listener(&listener_handle);
+    close_packet_manager(&pm_handle);
     return 0;
 }
 
