@@ -33,7 +33,7 @@ void* collector_loop(void* arg);
 int _treat_raw_packet(struct packet_st packet);
 
 /* Terminate the listener */
-int close(struct listener_handle_st *handle);
+int close_listener(struct listener_handle_st *handle);
 
 
 

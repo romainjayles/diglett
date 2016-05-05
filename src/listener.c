@@ -77,7 +77,11 @@ int init(const char *interface_name, struct listener_handle_st *handle) {
 
 }
 
-int close(struct listener_handle_st *handle) {
+int close_listener(struct listener_handle_st *handle) {
+	pthread_join(handle->listener_thread ,NULL);
+	if(close(handle->sock_fd) != 0){
+		return ERROR_IMPOSSIBLE_TO_CLOSE_SOCKET;
+	}
 }
 
 /*
